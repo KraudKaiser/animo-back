@@ -2,6 +2,9 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
+import animesRouter from "./src/controllers/animes"
+import usersRouter from "./src/controllers/users"
+
 const app = express();
 
 // Configurar body-parser para analizar las solicitudes POST
@@ -13,34 +16,12 @@ mongoose.connect("mongodb://localhost:27017/anime", { useNewUrlParser: true, use
   console.log("Conectado a la base de datos MongoDB");
 });
 
-// Definir el esquema de la ruta, el middleware, el controlador y el servicio
-const router = express.Router();
-const middleware = (req, res, next) => {
-  // Agregar lógica de permisos de usuario aquí
-  next();
-};
-const controller = (req, res) => {
-  // Agregar lógica para ejecutar servicios aquí
-};
-const service = {
-  findUserByID: () => {
-    // Agregar lógica para buscar usuario por ID aquí
-  },
-  fetchAnimes: () => {
-    // Agregar lógica para obtener animes aquí
-  },
-  fetchAnimesPaginated: () => {
-    // Agregar lógica para obtener animes paginados aquí
-  },
-};
+
 
 // Definir rutas
-router.get("/user/:id", middleware, controller(service.findUserByID));
-router.get("/animes", middleware, controller(service.fetchAnimes));
-router.get("/animes/:page", middleware, controller(service.fetchAnimesPaginated));
-
+app.get("/anime", animesRouter)
 // Agregar rutas al servidor
-app.use("/api", router);
+app.use("/user", usersRouter);
 
 // Iniciar el servidor
 app.listen(3000, () => {
