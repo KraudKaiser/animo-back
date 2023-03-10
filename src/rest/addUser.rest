@@ -1,0 +1,10 @@
+POST http://localhost:8081/user/addUser
+Content-Type: application/json
+
+{
+	"name": "ramiro",
+	"email": "paikon2010@gmail.com",
+	"password": "Minecraft@2",
+	"likes":[],
+	"comments":[]
+}
