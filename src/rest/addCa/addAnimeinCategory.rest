@@ -1,0 +1,7 @@
+POST http://localhost:8081/category/animeUpload
+Content-Type: application/json
+
+{
+    "anime":"640a7c91912004d2727f3101",
+    "category":"Terror"
+}

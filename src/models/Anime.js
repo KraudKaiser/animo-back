@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const animeSchema = new mongoose.Schema({
-	name:String,
+	title:String,
 	description:String,
 	chapters:[
 		{
@@ -15,7 +15,10 @@ const animeSchema = new mongoose.Schema({
 			comment:String
 		},
 	],
-	category:String
+	category:String /*:{
+		type: mongoose.Schema.Types.ObjectId,
+		ref:"Anime"
+	} */
 })
 
 module.exports = mongoose.model("Anime", animeSchema)

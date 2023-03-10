@@ -1,5 +1,5 @@
 const animesRouter = require("express").Router()
-const {fetchAnimes, fetchAnimesPaginated} = require("../services/animesService")
+const {addAnime, fetchAnimes, fetchAnimesPaginated} = require("../services/animesService")
 
 animesRouter.get("/", (req, res) =>{
 	fetchAnimes(req.body)
@@ -9,4 +9,13 @@ animesRouter.get("/:pagination", (req, res) =>{
 	fetchAnimesPaginated(pagination)
 })
 
-export default animesRouter
+animesRouter.post("/", (req, res) =>{
+	const anime = req.body
+	console.log(anime)
+	addAnime(anime).then((response) =>{
+		res.json(response)
+	})
+
+})
+
+module.exports = animesRouter

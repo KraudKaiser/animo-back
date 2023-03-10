@@ -5,4 +5,4 @@ usersRouter.get("/:userID", (req, res) =>{
 	findUserByID(req.params.userID)
 })
 
-export default usersRouter
+module.exports = usersRouter

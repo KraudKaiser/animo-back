@@ -1,9 +1,11 @@
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
+const express = require("express")
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+require("dotenv/config")
 
-import animesRouter from "./src/controllers/animes"
-import usersRouter from "./src/controllers/users"
+const animesRouter = require("./src/controllers/animes")
+const usersRouter = require("./src/controllers/users")
+const categoryRouter = require("./src/controllers/category")
 
 const app = express();
 
@@ -12,18 +14,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Conectar a la base de datos MongoDB
-mongoose.connect("mongodb://localhost:27017/anime", { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-  console.log("Conectado a la base de datos MongoDB");
-});
-
+mongoose.connect(process.env.MONGO_URI).then(()=>{
+  console.log("Connection to database succesful")
+})
 
 
 // Definir rutas
-app.get("/anime", animesRouter)
+app.use("/anime", animesRouter)
 // Agregar rutas al servidor
 app.use("/user", usersRouter);
 
+app.use("/category", categoryRouter);
+
 // Iniciar el servidor
-app.listen(3000, () => {
-  console.log("Servidor API REST en ejecución en el puerto 3000");
+app.listen(8081, () => {
+  console.log("Servidor API REST en ejecución en el puerto 8081");
 });

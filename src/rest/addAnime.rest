@@ -1,0 +1,15 @@
+POST http://localhost:8081/anime/
+Content-Type: application/json
+
+{
+    "title":"Death Note",
+    "description":"Loco Asesino",
+    "chapters":[
+        {
+            "name":"capitulo 1"
+        }
+    ],
+    "rating": 5,
+    "comments":[],
+    "category":"terror"
+}
