@@ -1,4 +1,4 @@
-POST http://localhost:8081/user/addUser
+POST http://localhost:8081/user/register
 Content-Type: application/json
 
 {

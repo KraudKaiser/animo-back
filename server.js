@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors")
 require("dotenv/config")
 
 const animesRouter = require("./src/controllers/animes")
@@ -8,6 +9,8 @@ const usersRouter = require("./src/controllers/users")
 const categoryRouter = require("./src/controllers/category")
 
 const app = express();
+
+app.use(cors())
 
 // Configurar body-parser para analizar las solicitudes POST
 app.use(bodyParser.urlencoded({ extended: true }));

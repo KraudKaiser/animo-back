@@ -18,7 +18,11 @@ const UserSchema = new mongoose.Schema({
 			},
 			comment:"String"
 		}
-	]
+	],
+	admin:{
+		type:Boolean,
+		default:false
+	}
 })
 
 module.exports = new mongoose.model("User", UserSchema)

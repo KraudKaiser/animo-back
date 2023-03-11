@@ -1,0 +1,7 @@
+POST http://localhost:8081/user/login
+Content-Type: application/json
+
+{
+	"email":"paikon2010@gmail.com",
+	"password":"Minecraft@2"
+}
