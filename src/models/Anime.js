@@ -1,24 +1,31 @@
 const mongoose = require("mongoose")
 
 const animeSchema = new mongoose.Schema({
-	title:String,
+	title:{
+		type:String,
+		unique:true,
+		required:true
+	},
 	description:String,
 	chapters:[
 		{
 			name:String
 		},
 	],
-	rating: Number,
+	likes:{
+		type:Number,
+		default:0,
+	},
 	comments:[
 		{
 			author: String,
 			comment:String
 		},
 	],
-	category:String /*:{
+	category:{
 		type: mongoose.Schema.Types.ObjectId,
-		ref:"Anime"
-	} */
+		ref:"Category"
+	}
 })
 
 module.exports = mongoose.model("Anime", animeSchema)

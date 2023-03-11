@@ -10,11 +10,14 @@ const addCategory = (category) =>{
     return obj.save()
 }
 const addAnimeInCategory = (anime, category) =>{
-     return Category.findOneAndUpdate({name: category}, {animes:[
-        anime
-    ]})
-
-    
+     const categoryUpdate =  Category.findOneAndUpdate(
+        {name: category},
+         { $push: { animes: anime } },
+          {new:true})
+          .then((response) =>{
+            return response
+          })
+          return categoryUpdate
    
 }
 

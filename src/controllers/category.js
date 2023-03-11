@@ -17,7 +17,7 @@ categoryRouter.post("/", (req, res)=>{
         description,
     }
      addCategory(category).then((response) =>{
-        res.json(response)
+        res.status(200).json(response)
      })
 })
 

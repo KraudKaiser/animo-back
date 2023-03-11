@@ -9,7 +9,5 @@ Content-Type: application/json
             "name":"capitulo 1"
         }
     ],
-    "rating": 5,
-    "comments":[],
-    "category":"terror"
+    "category":"Terror"
 }
