@@ -1,8 +1,15 @@
 const categoryRouter = require("express").Router()
-const {addCategory, addAnimeInCategory} = require("../services/categoryService")
+const {addCategory, addAnimeInCategory, getCategories} = require("../services/categoryService")
 const Category = require("../models/Category")
+
+
+categoryRouter.get("/", (req, res) =>{
+   getCategories().then((response) =>{
+    res.json(response)
+   })
+})
+
 categoryRouter.get("/:category", (req,res) =>{
-    console.log(req.params)
     Category.find({name:req.params}).populate("animes")
     .then((response) =>{
         res.json(response)

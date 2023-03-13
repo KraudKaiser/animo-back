@@ -20,5 +20,10 @@ const addAnimeInCategory = (anime, category) =>{
           return categoryUpdate
    
 }
+const getCategories = () =>{
+ return Category.find({}).then((response) =>{
+    return response
+  })
+}
 
-module.exports =  {addCategory, addAnimeInCategory}
+module.exports =  {addCategory, addAnimeInCategory, getCategories}

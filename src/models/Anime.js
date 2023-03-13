@@ -9,22 +9,29 @@ const animeSchema = new mongoose.Schema({
 	description:String,
 	chapters:[
 		{
-			name:String
-		},
+			name:{
+				type:String
+			}
+		}	
 	],
-	likes:{
-		type:Number,
-		default:0,
-	},
+	likes:[{
+		type:mongoose.Schema.Types.ObjectId,
+		ref:"User",
+		default:[]
+}],
 	comments:[
 		{
 			author: String,
+			rating:Number,
 			comment:String
 		},
 	],
 	category:{
 		type: mongoose.Schema.Types.ObjectId,
 		ref:"Category"
+	},
+	thumbnail:{
+		type:String
 	}
 })
 

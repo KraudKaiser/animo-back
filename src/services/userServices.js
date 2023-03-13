@@ -1,6 +1,7 @@
 const User = require("../models/User")
 const bcrypt = require("bcryptjs")
 const generateAuthToken = require("../handlers/authTokenGenerate")
+const jwt = require("jsonwebtoken")
 const findUserByID =  () => {
     // Agregar lógica para buscar usuario por ID aquí
   }
@@ -26,6 +27,17 @@ const loginUser = async(email, password) =>{
 	  }
 }
 
+
+const loginTokenUser = async(token) =>{
+	const decoded = jwt.verify(token, process.env.SECRET_TOKEN_PASSWORD);
+    const user = await User.findById(decoded.userId)
+    if (!user) {
+      return  {status: 400, message: 'Unauthorized' };
+    }else{
+		return user;
+	}
+}
+
   const addUser = async(user) =>{
 	const saltyRounds = 10
 	const passwordHash = await bcrypt.hash(user.password, saltyRounds )
@@ -44,6 +56,7 @@ const loginUser = async(email, password) =>{
 
   module.exports = {
 	loginUser,
+	loginTokenUser,
 	findUserByID,
 	addUser
   }
