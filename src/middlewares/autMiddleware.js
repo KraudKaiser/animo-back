@@ -1,26 +1,26 @@
-const jwt = require('jsonwebtoken');
-const User = require('./models/user');
+const jwt = require('jsonwebtoken')
+const User = require('./models/user')
 require("dotenv/config")
 const authMiddleware = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization.split(' ')[1]
 
-    const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN_PASSWORD);
+    const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN_PASSWORD)
 
-    const user = await User.findById(decodedToken.userId);
+    const user = await User.findById(decodedToken.userId)
 
     if (!user) {
-      throw new Error();
+      throw new Error()
     }
 
-    req.user = user;
+    req.user = user
 
-    next();
+    next()
 
   }
    catch (error) {
-    res.status(401).send({ error: 'No autorizado' });
+    res.status(401).send({ error: 'No autorizado' })
   }
-};
+}
 
 module.export = authMiddleware

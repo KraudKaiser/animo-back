@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Category = require("../models/Category");
+const Category = require("../models/Category")
 
 const addCategory = (category) =>{
     const obj = new Category({

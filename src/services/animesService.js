@@ -5,7 +5,6 @@ const path = require("path")
 
 
 
-
 const addAnime = async(anime, file, thumbnailUrl) =>{
   const categoryFind = await Category.findOne({name:anime.category})
   if(categoryFind === null){
@@ -37,44 +36,44 @@ const fetchAnimes =  () => {
 }
 const addLikeToAnime = async (userId, animeId) =>{
 try {
-    const anime = await Anime.findById(animeId);
+    const anime = await Anime.findById(animeId)
     const user = await User.findById(userId)
-    anime.likes.push(userId);
+    anime.likes.push(userId)
     user.likes.push(animeId)
-    await anime.save();
+    await anime.save()
     await user.save()
-    return anime;
+    return anime
   } catch (error) {
-    throw new Error('Unable to add like to anime');
+    throw new Error('Unable to add like to anime')
   }
 }
 
 // Obtener la cantidad de likes de un anime
 const getLikesForAnime = async(animeId) =>{
 try {
-    const anime = await Anime.findById(animeId);
-    return anime.likes.length;
+    const anime = await Anime.findById(animeId)
+    return anime.likes.length
   } catch (error) {
-    throw new Error('Unable to get likes for anime');
+    throw new Error('Unable to get likes for anime')
   }
 }
 
 const deleteLikeOfAnime = async(userId, animeId) =>{
 try {
-    const user = await User.findById(userId);
+    const user = await User.findById(userId)
     const anime = await Anime.findById(animeId)
-    const indexUser = user.likes.indexOf(animeId);
-    const indexAnime = anime.likes.indexOf(userId);
+    const indexUser = user.likes.indexOf(animeId)
+    const indexAnime = anime.likes.indexOf(userId)
     if (indexUser !== -1) {
-      user.likes.splice(indexUser, 1);
+      user.likes.splice(indexUser, 1)
       anime.likes.splice(indexAnime, 1)
 
-      await user.save();
+      await user.save()
       await anime.save()
     }
-    return user;
+    return user
   } catch (error) {
-    throw new Error('Unable to remove liked anime from user');
+    throw new Error('Unable to remove liked anime from user')
   }
 }
 

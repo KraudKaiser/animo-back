@@ -19,14 +19,14 @@ usersRouter.post("/login", (req, res) =>{
 })
 
 usersRouter.get("/login/token", (req, res)=>{
-	const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
+	const authHeader = req.headers.authorization
+    const token = authHeader && authHeader.split(' ')[1]
 	if (!token) {
-		return res.status(401).json({ message: 'No Hay Token' });
+		return res.status(401).json({ message: 'No Hay Token' })
 	  }
 	  loginTokenUser(token).then((response) =>{
 		  if(response.message){
-			  res.status(response.status).json({error: response.message});
+			  res.status(response.status).json({error: response.message})
 			}else{
 				res.json(response)
 			}

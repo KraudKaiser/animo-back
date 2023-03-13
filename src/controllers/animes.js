@@ -13,9 +13,9 @@ const storage = multer.diskStorage({
 	filename: function (req, file, cb) {
 	  cb(null, Date.now() + '-' + file.originalname)
 	}
-  });
+  })
   
-  const upload = multer({ storage: storage });
+  const upload = multer({ storage: storage })
   
 
 
@@ -36,8 +36,8 @@ animesRouter.get("/query", (req, res) =>{
 animesRouter.post("/", upload.single("thumbnail"), (req, res) =>{
 	const anime = req.body
 	const file = req.file
-	const baseUrl = 'http://localhost:8081/';
-	const thumbnailUrl = baseUrl + req.file.path.replace('\\', '/');
+	const baseUrl = 'http://localhost:8081/'
+	const thumbnailUrl = baseUrl + req.file.path.replace('\\', '/')
 	
 	addAnime(anime, file, thumbnailUrl).then((response) =>{
 		if(response.message){
